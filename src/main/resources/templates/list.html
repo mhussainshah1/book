@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base::header"></div>
+    <title>List</title>
+</head>
+
+
+<body>
+<div th:replace="base::nav"></div>
+<div class="container-float">
+    <div class="jumbotron">
+        <h2 align="center">Book List</h2>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Instructor</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>In Stock</th>
+            <td>To Do</td>
+        </tr>
+        <!--enhanced for loop-->
+        <tr th:each="book : ${books}">
+            <td>
+                <a th:href="@{/detail/{id}(id=${book.SKU})}">[[${book.title}]]</a>
+            </td>
+            <td th:text = "${book.author}"></td>
+            <td th:text = "${book.description}"></td>
+            <td th:text = "${book.price}"></td>
+            <td>
+                <span th:if="${book.inStock}">Yes</span>
+                <span th:unless="${book.inStock}">No</span>
+            </td>
+            <td>
+                <a th:href="@{/update/{id}(id=${book.SKU})}">Update</a>-
+                <a th:href="@{/delete/{id}(id=${book.SKU})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:replace="base::footer"></div>
+</body>
+</html>
