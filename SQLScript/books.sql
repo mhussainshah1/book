@@ -3,3 +3,5 @@ use books;
 
 
 select * from book;
+
+truncate book;
