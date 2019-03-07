@@ -14,17 +14,22 @@
     </div>
     <table class="table">
         <tr>
+            <th>Select</th>
+            <th>SKU</th>
             <th>Title</th>
             <th>Instructor</th>
             <th>Description</th>
             <th>Price</th>
             <th>In Stock</th>
-            <td>To Do</td>
+            <th>To Do</th>
         </tr>
-        <!--enhanced for loop-->
-        <tr th:each="book : ${books}">
+        <tr th:each="book : ${books}"><!--enhanced for loop-->
             <td>
-                <a th:href="@{/detail/{id}(id=${book.SKU})}">[[${book.title}]]</a>
+                <input type="checkbox" th:name="check" id="check" th:value="${book.id}"/>
+            </td>
+            <td th:text = "${book.SKU}"></td>
+            <td>
+                <a th:href="@{/detail/{id}(id=${book.id})}">[[${book.title}]]</a>
             </td>
             <td th:text = "${book.author}"></td>
             <td th:text = "${book.description}"></td>
@@ -34,11 +39,14 @@
                 <span th:unless="${book.inStock}">No</span>
             </td>
             <td>
-                <a th:href="@{/update/{id}(id=${book.SKU})}">Update</a>-
-                <a th:href="@{/delete/{id}(id=${book.SKU})}">Delete</a>
+                <a th:href="@{/update/{id}(id=${book.id})}">Edit</a>-
+                <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
             </td>
         </tr>
     </table>
+    <span th:inline="text">[[${books}]]</span>
+    <br/>
+    <a th:href="@{/deleteEntities/{entries}(entries=${books})}">Deletion</a>
 </div>
 <div th:replace="base::footer"></div>
 </body>

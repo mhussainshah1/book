@@ -10,39 +10,40 @@
 <div th:replace="base::nav"></div>
 <div align="center" class="container">
     <div class="jumbotron">
-        <h1>Book Form</h1>
+        <h2>Book Form</h2>
     </div>
     <form action="#" method="post" th:action="@{/process}" th:object="${book}">
-        <input th:field="*{SKU}" type="hidden"/>
+        <input th:field="*{id}" type="hidden"/>
         <table>
             <tr>
-                <td><label for="sku"> SKU:</label></td>
+                <td><label for="sku">SKU:</label></td>
                 <td><input id="sku" name="sku" th:field="*{SKU}" type="text"/></td>
                 <td><span th:errors="*{SKU}" th:if="${#fields.hasErrors('SKU')}"></span></td>
             </tr>
             <tr>
-                <td><label> Title:</label></td>
-                <td><input th:field="*{title}" type="text"/></td>
+                <td><label for="title">Title:</label></td>
+                <td><input id="title" name="title" th:field="*{title}" type="text"/></td>
                 <td><span th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></span></td>
             </tr>
             <tr>
-                <td><label> Instructor:</label></td>
-                <td><input th:field="*{author}" type="text"/></td>
+                <td><label for="instructor"> Instructor:</label></td>
+                <td><input id="instructor" name="instructor" th:field="*{author}" type="text"/></td>
                 <td><span th:errors="*{author}" th:if="${#fields.hasErrors('author')}"></span></td>
             </tr>
             <tr>
-                <td><label> Description:</label></td>
-                <td><textarea cols="20" rows="4" th:field="*{description}"></textarea></td>
+                <td><label for="description"> Description:</label></td>
+                <td><textarea id="description" name="description" cols="20" rows="4" th:field="*{description}"></textarea></td>
                 <td><span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
             </tr>
             <tr>
-                <td><label> Price:</label></td>
-                <td><input th:field="*{price}" type="number"/></td>
+                <td><label for="price"> Price:</label></td>
+                <td><input id="price" name="price" th:field="*{price}" type="number"/></td>
                 <td><span th:errors="*{price}" th:if="${#fields.hasErrors('price')}"></span></td>
             </tr>
             <tr>
-                <td><label> In Stock:</label></td>
-                <td><input th:field="*{inStock}" type="checkbox"/></td>
+                <td></td>
+                <td><input id="stock" name="stock" th:field="*{inStock}" type="checkbox"/>
+                <label for="stock"> In Stock:</label></td>
                 <td><span th:errors="*{inStock}" th:if="${#fields.hasErrors('inStock')}"></span></td>
             </tr>
         </table>

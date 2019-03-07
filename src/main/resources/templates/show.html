@@ -6,27 +6,39 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<table class ="table">
-    <tr>
-        <td>Title:</td>
-        <td><span th:text="${book.title}"></span><br/></td>
-    </tr>
-    <tr>
-        <td>Instructor:</td>
-        <td><span th:text="${book.author}"></span><br/></td>
-    </tr>
-    <tr>
-        <td>Description:</td>
-        <td><span th:text="${book.description}"></span><br/></td>
-    </tr>
-    <tr>
-        <td>Price:</td>
-        <td><span th:text="${book.inStock}"></span><br/></td>
-    </tr>
-</table>
-
-
-<a th:href="@{/delete/{id}(id=${book.SKU})}">Delete this book</a>
+<div class="container" align="center">
+    <table class ="table">
+        <tr>
+            <td>SKU:</td>
+            <td><span th:text="${book.SKU}"></span></td>
+        </tr>
+        <tr>
+            <td>Title:</td>
+            <td><span th:text="${book.title}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td><span th:text="${book.author}"></span></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><span th:text="${book.description}"></span></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><span th:text="${book.price}"></span></td>
+        </tr>
+        <tr>
+            <td>In Stock:</td>
+            <td>
+                <span th:if="${book.inStock}">Yes</span>
+                <span th:unless="${book.inStock}">No</span>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/update/{id}(id=${book.id})}">Edit</a>-
+    <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+</div>
 <div th:replace="base::footer"></div>
 </body>
 </html>

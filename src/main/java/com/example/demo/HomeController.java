@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Iterator;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -37,21 +39,27 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping("/detail/{SKU}")
-    public String showCourse(@PathVariable("SKU") String SKU, Model model) {
-        model.addAttribute("book", bookRepository.findById(SKU).get());
+    @RequestMapping("/detail/{id}")
+    public String showBook(@PathVariable("id") long id, Model model) {
+        model.addAttribute("book", bookRepository.findById(id).get());
         return "show";
     }
 
-    @RequestMapping("/update/{SKU}")
-    public String updateCourse(@PathVariable("SKU") String SKU, Model model) {
-        model.addAttribute("book", bookRepository.findById(SKU).get());
+    @RequestMapping("/update/{id}")
+    public String updateBook(@PathVariable("id") long id, Model model) {
+        model.addAttribute("book", bookRepository.findById(id).get());
         return "bookform";
     }
 
-    @RequestMapping("/delete/{SKU}")
-    public String delCourse(@PathVariable("SKU") String SKU){
-        bookRepository.deleteById(SKU);
+    @RequestMapping("/delete/{id}")
+    public String delBook(@PathVariable("id") long id){
+        bookRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/deleteEntities/{entities}")
+    public String delBooks(@PathVariable("entities") Iterable<Book> entities){
+        bookRepository.deleteAll(entities);
         return "redirect:/";
     }
 

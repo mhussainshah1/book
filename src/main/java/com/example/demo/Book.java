@@ -31,6 +31,9 @@ import javax.validation.constraints.Size;
 @Entity
 public class Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     @NonNull
     private String SKU;
 
@@ -66,8 +69,12 @@ public class Book {
         this.isInStock = isInStock;
     }
 
-    public String getDisplayText(){
-        return "Author: " + author +"\nTitle: " +title + "\nDescription: " + description ;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -116,6 +123,11 @@ public class Book {
 
     public void setSKU(String SKU) {
         this.SKU = SKU;
+    }
+
+    @Override
+    public String toString() {
+        return "Author: " + author +"\nTitle: " +title + "\nDescription: " + description ;
     }
 }
 
